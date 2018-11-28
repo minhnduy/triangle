@@ -18,7 +18,7 @@ namespace triangle
         // Khai báo biến.
         private float[,] a = new float[10, 12];  // khai báo mảng chứa 10 thuộc tính: 3 góc, 3 cạnh, diện tích, nửa chu vi, bán kính đường tròn ngoại tiếp, chiều cao và 12 công thức tính của tam giác trong trường hợp bài toán này.
         private const double pi = 3.1415926535897931;   // Khai bao pi
-        private const float angle = 180f;               // Tong 3 goc trong tam giac.
+        private const float totalTri = 180f;               // Tong 3 goc trong tam giac.
 
         public triangle()
         {
@@ -30,31 +30,29 @@ namespace triangle
             cbValue.SelectedItem = cbValue.Items[0];
         }
 
-
         #endregion
 
         #region khởi tạo 
 
         private void init()
         {
-            float temp = -1;
+            float set = -1;
             for (int i = 0; i < 10; i++)
                 for (int j = 0; j < 12; j++)
                     a[i, j] = 0;
-            a[0, 1] = a[0, 3] = a[0, 4] = a[0, 5] = a[0, 6] = a[0, 7] = a[0, 8] = a[0, 10] = temp; // cạnh a
-            a[1, 1] = a[1, 2] = a[1, 4] = a[1, 5] = a[1, 6] = a[1, 7] = a[1, 8] = a[1, 9] = a[1, 10] = a[1, 11] = temp;// cạnh b
-            a[2, 1] = a[2, 2] = a[2, 3] = a[2, 5] = a[2, 6] = a[2, 7] = a[2, 9] = a[2, 10] = temp;// cạnh c
-            a[3, 0] = a[3, 2] = a[3, 5] = a[3, 8] = temp;// góc Alpha
-            a[4, 0] = a[4, 3] = a[4, 6] = a[4, 8] = a[4, 9] = temp;// góc Beta
-            a[5, 0] = a[5, 4] = a[5, 7] = a[5, 9] = a[5, 11] = temp;// góc Deta
-            a[6, 11] = temp;// chiều cao ha
-            a[7, 2] = a[7, 3] = a[7, 4] = a[7, 10] = temp;// diên tích S
-            a[8, 1] = temp;// nửa chu vi p
-            a[9, 10] = temp;// bán kính đường tròn ngoại tiếp tam giác
+            a[0, 1] = a[0, 3] = a[0, 4] = a[0, 5] = a[0, 6] = a[0, 7] = a[0, 8] = a[0, 10] = set; // cạnh a
+            a[1, 1] = a[1, 2] = a[1, 4] = a[1, 5] = a[1, 6] = a[1, 7] = a[1, 8] = a[1, 9] = a[1, 10] = a[1, 11] = set;// cạnh b
+            a[2, 1] = a[2, 2] = a[2, 3] = a[2, 5] = a[2, 6] = a[2, 7] = a[2, 9] = a[2, 10] = set;// cạnh c
+            a[3, 0] = a[3, 2] = a[3, 5] = a[3, 8] = set;// góc Alpha
+            a[4, 0] = a[4, 3] = a[4, 6] = a[4, 8] = a[4, 9] = set;// góc Beta
+            a[5, 0] = a[5, 4] = a[5, 7] = a[5, 9] = a[5, 11] = set;// góc Deta
+            a[6, 11] = set;// chiều cao ha
+            a[7, 2] = a[7, 3] = a[7, 4] = a[7, 10] = set;// diên tích S
+            a[8, 1] = set;// nửa chu vi p
+            a[9, 10] = set;// bán kính đường tròn ngoại tiếp tam giác
         }
 
         #endregion
-
 
         #region xử lý 
 
@@ -150,17 +148,17 @@ namespace triangle
                     switch (notKnow)
                     {
                         case 3:
-                            value = (float)(angle - a[4, 0] - a[5, 0]);
+                            value = (float)(totalTri - a[4, 0] - a[5, 0]);
                             a[3, 0] = a[3, 2] = a[3, 5] = a[3, 8] = value;
                             txA.Text = a[3, 0].ToString();
                             break;
                         case 4:
-                            value = (float)(angle - a[3, 0] - a[5, 0]);
+                            value = (float)(totalTri - a[3, 0] - a[5, 0]);
                             a[4, 0] = a[4, 3] = a[4, 6] = a[4, 8] = a[4, 9] = value;
                             txB.Text = a[4, 0].ToString();
                             break;
                         case 5:
-                            value = (float)(angle - a[3, 0] - a[4, 0]);
+                            value = (float)(totalTri - a[3, 0] - a[4, 0]);
                             a[5, 0] = a[5, 4] = a[5, 7] = a[5, 9] = a[5, 11] = value;
                             txC.Text = a[5, 0].ToString();
                             break;
@@ -195,22 +193,22 @@ namespace triangle
                     switch (notKnow)
                     {
                         case 1:
-                            value = (float)(a[7, 2] / (a[2, 2] * Math.Sin((double)(a[3, 2] * pi / angle))));
+                            value = (float)(a[7, 2] / (a[2, 2] * Math.Sin((double)(a[3, 2] * pi / totalTri))));
                             a[1, 1] = a[1, 2] = a[1, 4] = a[1, 5] = a[1, 6] = a[1, 7] = a[1, 8] = a[1, 9] = a[1, 10] = a[1, 11] = value;
                             txCb.Text = value.ToString();
                             break;
                         case 2:
-                            value = (float)(a[7, 2] / (a[1, 2] * Math.Sin((double)(a[3, 2] * pi / angle))));
+                            value = (float)(a[7, 2] / (a[1, 2] * Math.Sin((double)(a[3, 2] * pi / totalTri))));
                             a[2, 1] = a[2, 2] = a[2, 3] = a[2, 5] = a[2, 6] = a[2, 7] = a[2, 9] = a[2, 10] = value;
                             txCc.Text = value.ToString();
                             break;
                         case 3:
-                            value = (float)((Math.Asin((double)(2 * a[7, 2] / (a[1, 2] * a[2, 2])))) * angle / pi);
+                            value = (float)((Math.Asin((double)(2 * a[7, 2] / (a[1, 2] * a[2, 2])))) * totalTri / pi);
                             a[3, 0] = a[3, 2] = a[3, 5] = a[3, 8] = value;
                             txA.Text = value.ToString();
                             break;
                         case 7:
-                            value = (float)(a[1, 2] * a[2, 2] * Math.Sin((double)(a[3, 2] * pi / angle)) * 0.5f);
+                            value = (float)(a[1, 2] * a[2, 2] * Math.Sin((double)(a[3, 2] * pi / totalTri)) * 0.5f);
                             a[7, 2] = a[7, 3] = a[7, 4] = a[7, 10] = value;
                             txS.Text = value.ToString();
                             break;
@@ -220,22 +218,22 @@ namespace triangle
                     switch (notKnow)
                     {
                         case 0:
-                            value = (float)(a[7, 3] / (a[2, 3] * Math.Sin((double)(a[4, 3] * pi / angle))));
+                            value = (float)(a[7, 3] / (a[2, 3] * Math.Sin((double)(a[4, 3] * pi / totalTri))));
                             a[0, 1] = a[0, 3] = a[0, 4] = a[0, 5] = a[0, 6] = a[0, 7] = a[0, 8] = a[0, 10] = value;
                             txCa.Text = value.ToString();
                             break;
                         case 2:
-                            value = (float)(a[7, 3] / (a[0, 3] * Math.Sin((double)(a[4, 3] * pi / angle)))); ;
+                            value = (float)(a[7, 3] / (a[0, 3] * Math.Sin((double)(a[4, 3] * pi / totalTri)))); ;
                             a[2, 1] = a[2, 2] = a[2, 3] = a[2, 5] = a[2, 6] = a[2, 7] = a[2, 9] = a[2, 10] = value;
                             txCc.Text = value.ToString();
                             break;
                         case 4:
-                            value = (float)((Math.Asin((double)(2 * a[7, 3] / (a[0, 3] * a[2, 3])))) * angle / pi);
+                            value = (float)((Math.Asin((double)(2 * a[7, 3] / (a[0, 3] * a[2, 3])))) * totalTri / pi);
                             a[4, 0] = a[4, 3] = a[4, 6] = a[4, 8] = a[4, 9] = value;
                             txB.Text = value.ToString();
                             break;
                         case 7:
-                            value = (float)((a[2, 3] * a[0, 3] * Math.Sin((double)(a[4, 3] * pi / angle))) / 2);
+                            value = (float)((a[2, 3] * a[0, 3] * Math.Sin((double)(a[4, 3] * pi / totalTri))) / 2);
                             a[7, 2] = a[7, 3] = a[7, 4] = a[7, 10] = value;
                             txS.Text = value.ToString();
                             break;
@@ -245,22 +243,22 @@ namespace triangle
                     switch (notKnow)
                     {
                         case 0:
-                            value = (float)(a[7, 4] / (a[1, 4] * Math.Sin((double)(a[5, 4] * pi / angle))));
+                            value = (float)(a[7, 4] / (a[1, 4] * Math.Sin((double)(a[5, 4] * pi / totalTri))));
                             a[0, 1] = a[0, 3] = a[0, 4] = a[0, 5] = a[0, 6] = a[0, 7] = a[0, 8] = a[0, 10] = value;
                             txCb.Text = value.ToString();
                             break;
                         case 1:
-                            value = (float)(a[7, 4] / (a[0, 4] * Math.Sin((double)(a[5, 4] * pi / angle))));
+                            value = (float)(a[7, 4] / (a[0, 4] * Math.Sin((double)(a[5, 4] * pi / totalTri))));
                             a[1, 1] = a[1, 2] = a[1, 4] = a[1, 5] = a[1, 6] = a[1, 7] = a[1, 8] = a[1, 9] = a[1, 10] = a[1, 11] = value;
                             txCc.Text = value.ToString();
                             break;
                         case 5:
-                            value = (float)((Math.Asin((double)(2 * a[7, 4] / (a[0, 4] * a[1, 4])))) * angle / pi);
+                            value = (float)((Math.Asin((double)(2 * a[7, 4] / (a[0, 4] * a[1, 4])))) * totalTri / pi);
                             a[5, 0] = a[5, 4] = a[5, 7] = a[5, 9] = a[5, 11] = value;
                             txC.Text = value.ToString();
                             break;
                         case 7:
-                            value = (float)((a[1, 4] * a[0, 4] * Math.Sin((double)(a[5, 4] * pi / angle))) / 2);
+                            value = (float)((a[1, 4] * a[0, 4] * Math.Sin((double)(a[5, 4] * pi / totalTri))) / 2);
                             a[7, 2] = a[7, 3] = a[7, 4] = a[7, 10] = value;
                             txS.Text = value.ToString();
                             break;
@@ -270,22 +268,22 @@ namespace triangle
                     switch (notKnow)
                     {
                         case 0:
-                            value = (float)Math.Sqrt((double)(a[1, 5] * a[1, 5] + a[2, 5] * a[2, 5] - 2 * a[1, 5] * a[2, 5] * (float)Math.Cos((double)a[3, 5] * pi / angle)));
+                            value = (float)Math.Sqrt((double)(a[1, 5] * a[1, 5] + a[2, 5] * a[2, 5] - 2 * a[1, 5] * a[2, 5] * (float)Math.Cos((double)a[3, 5] * pi / totalTri)));
                             a[0, 1] = a[0, 3] = a[0, 4] = a[0, 5] = a[0, 6] = a[0, 7] = a[0, 8] = a[0, 10] = value;
                             txCa.Text = value.ToString();
                             break;
                         case 1:
-                            value = (float)bac2(1, (double)(-2 * a[2, 5] * Math.Cos((double)(a[3, 5] * pi / angle))), (double)(a[2, 5] * a[2, 5] - (a[0, 5] * a[0, 5])));
+                            value = (float)bac2(1, (double)(-2 * a[2, 5] * Math.Cos((double)(a[3, 5] * pi / totalTri))), (double)(a[2, 5] * a[2, 5] - (a[0, 5] * a[0, 5])));
                             a[1, 1] = a[1, 2] = a[1, 4] = a[1, 5] = a[1, 6] = a[1, 7] = a[1, 8] = a[1, 9] = a[1, 10] = a[1, 11] = value;
                             txCb.Text = value.ToString();
                             break;
                         case 2:
-                            value = (float)bac2(1, (double)(-2 * a[1, 5] * Math.Cos((double)(a[3, 5] * pi / angle))), (double)(a[1, 5] * a[1, 5] - (a[0, 5] * a[0, 5])));
+                            value = (float)bac2(1, (double)(-2 * a[1, 5] * Math.Cos((double)(a[3, 5] * pi / totalTri))), (double)(a[1, 5] * a[1, 5] - (a[0, 5] * a[0, 5])));
                             a[2, 1] = a[2, 2] = a[2, 3] = a[2, 5] = a[2, 6] = a[2, 7] = a[2, 9] = a[2, 10] = value;
                             txCc.Text = value.ToString();
                             break;
                         case 3:
-                            value = (float)(Math.Acos((double)((a[1, 5] * a[1, 5] + a[2, 5] * a[2, 5] - a[0, 5] * a[0, 5]) / (2 * a[1, 5] * a[2, 5]))) * angle / pi);
+                            value = (float)(Math.Acos((double)((a[1, 5] * a[1, 5] + a[2, 5] * a[2, 5] - a[0, 5] * a[0, 5]) / (2 * a[1, 5] * a[2, 5]))) * totalTri / pi);
                             a[3, 0] = a[3, 2] = a[3, 5] = a[3, 8] = value;
                             txA.Text = value.ToString();
                             break;
@@ -295,22 +293,22 @@ namespace triangle
                     switch (notKnow)
                     {
                         case 1:
-                            value = (float)Math.Sqrt((double)(a[0, 6] * a[0, 6] + a[2, 6] * a[2, 6] - 2 * a[0, 6] * a[2, 6] * (float)Math.Cos((double)a[4, 6] * pi / angle)));
+                            value = (float)Math.Sqrt((double)(a[0, 6] * a[0, 6] + a[2, 6] * a[2, 6] - 2 * a[0, 6] * a[2, 6] * (float)Math.Cos((double)a[4, 6] * pi / totalTri)));
                             a[1, 1] = a[1, 2] = a[1, 4] = a[1, 5] = a[1, 6] = a[1, 7] = a[1, 8] = a[1, 9] = a[1, 10] = a[1, 11] = value;
                             txCb.Text = value.ToString();
                             break;
                         case 0:
-                            value = (float)bac2(1, (double)(-2 * a[2, 6] * Math.Cos((double)(a[4, 6] * pi / angle))), (double)(a[2, 6] * a[2, 6] - (a[1, 6] * a[1, 6])));
+                            value = (float)bac2(1, (double)(-2 * a[2, 6] * Math.Cos((double)(a[4, 6] * pi / totalTri))), (double)(a[2, 6] * a[2, 6] - (a[1, 6] * a[1, 6])));
                             a[0, 1] = a[0, 3] = a[0, 4] = a[0, 5] = a[0, 6] = a[0, 7] = a[0, 8] = a[0, 10] = value;
                             txCa.Text = value.ToString();
                             break;
                         case 2:
-                            value = (float)bac2(1, (double)(-2 * a[0, 6] * Math.Cos((double)(a[4, 6] * pi / angle))), (double)(a[0, 6] * a[0, 6] - (a[1, 6] * a[1, 6])));
+                            value = (float)bac2(1, (double)(-2 * a[0, 6] * Math.Cos((double)(a[4, 6] * pi / totalTri))), (double)(a[0, 6] * a[0, 6] - (a[1, 6] * a[1, 6])));
                             a[2, 1] = a[2, 2] = a[2, 3] = a[2, 5] = a[2, 6] = a[2, 7] = a[2, 9] = a[2, 10] = value;
                             txCc.Text = value.ToString();
                             break;
                         case 4:
-                            value = (float)(Math.Acos((double)((a[0, 6] * a[0, 6] + a[2, 6] * a[2, 6] - a[1, 6] * a[1, 6]) / (2 * a[0, 6] * a[2, 6]))) * angle / pi);
+                            value = (float)(Math.Acos((double)((a[0, 6] * a[0, 6] + a[2, 6] * a[2, 6] - a[1, 6] * a[1, 6]) / (2 * a[0, 6] * a[2, 6]))) * totalTri / pi);
                             a[4, 0] = a[4, 3] = a[4, 6] = a[4, 8] = a[4, 9] = value;
                             txB.Text = value.ToString();
                             break;
@@ -320,22 +318,22 @@ namespace triangle
                     switch (notKnow)
                     {
                         case 2:
-                            value = (float)Math.Sqrt((double)(a[0, 7] * a[0, 7] + a[1, 7] * a[1, 7] - 2 * a[0, 7] * a[1, 7] * (float)Math.Cos((double)a[5, 7] * pi / angle)));
+                            value = (float)Math.Sqrt((double)(a[0, 7] * a[0, 7] + a[1, 7] * a[1, 7] - 2 * a[0, 7] * a[1, 7] * (float)Math.Cos((double)a[5, 7] * pi / totalTri)));
                             a[2, 1] = a[2, 2] = a[2, 3] = a[2, 5] = a[2, 6] = a[2, 7] = a[2, 9] = a[2, 10] = value;
                             txCc.Text = value.ToString();
                             break;
                         case 0:
-                            value = (float)bac2(1, (double)(-2 * a[1, 7] * Math.Cos((double)(a[5, 7] * pi / angle))), (double)(a[0, 7] * a[0, 7] - (a[2, 7] * a[2, 7])));
+                            value = (float)bac2(1, (double)(-2 * a[1, 7] * Math.Cos((double)(a[5, 7] * pi / totalTri))), (double)(a[0, 7] * a[0, 7] - (a[2, 7] * a[2, 7])));
                             a[0, 1] = a[0, 3] = a[0, 4] = a[0, 5] = a[0, 6] = a[0, 7] = a[0, 8] = a[0, 10] = value;
                             txCa.Text = value.ToString();
                             break;
                         case 1:
-                            value = (float)bac2(1, (double)(-2 * a[0, 7] * Math.Cos((double)(a[5, 7] * pi / angle))), (double)(a[1, 7] * a[1, 7] - (a[2, 7] * a[2, 7])));
+                            value = (float)bac2(1, (double)(-2 * a[0, 7] * Math.Cos((double)(a[5, 7] * pi / totalTri))), (double)(a[1, 7] * a[1, 7] - (a[2, 7] * a[2, 7])));
                             a[1, 1] = a[1, 2] = a[1, 4] = a[1, 5] = a[1, 6] = a[1, 7] = a[1, 8] = a[1, 9] = a[1, 10] = a[1, 11] = value;
                             txCb.Text = value.ToString();
                             break;
                         case 5:
-                            value = (float)(Math.Acos((double)((a[0, 7] * a[0, 7] + a[1, 7] * a[1, 7] - a[2, 7] * a[2, 7]) / (2 * a[0, 7] * a[1, 7]))) * angle / pi);
+                            value = (float)(Math.Acos((double)((a[0, 7] * a[0, 7] + a[1, 7] * a[1, 7] - a[2, 7] * a[2, 7]) / (2 * a[0, 7] * a[1, 7]))) * totalTri / pi);
                             a[5, 0] = a[5, 4] = a[5, 7] = a[5, 9] = a[5, 11] = value;
                             txC.Text = value.ToString();
                             break;
@@ -345,22 +343,22 @@ namespace triangle
                     switch (notKnow)
                     {
                         case 0:
-                            value = (float)((a[1, 8] * Math.Sin((double)(a[3, 8] * pi / angle))) / Math.Sin((double)(a[4, 8] * pi / angle)));
+                            value = (float)((a[1, 8] * Math.Sin((double)(a[3, 8] * pi / totalTri))) / Math.Sin((double)(a[4, 8] * pi / totalTri)));
                             a[0, 1] = a[0, 3] = a[0, 4] = a[0, 5] = a[0, 6] = a[0, 7] = a[0, 8] = a[0, 10] = value;
                             txCa.Text = value.ToString();
                             break;
                         case 1:
-                            value = (float)((a[0, 8] * Math.Sin((double)(a[4, 8] * pi / angle))) / Math.Sin((double)(a[3, 8] * pi / angle)));
+                            value = (float)((a[0, 8] * Math.Sin((double)(a[4, 8] * pi / totalTri))) / Math.Sin((double)(a[3, 8] * pi / totalTri)));
                             a[1, 1] = a[1, 2] = a[1, 4] = a[1, 5] = a[1, 6] = a[1, 7] = a[1, 8] = a[1, 9] = a[1, 10] = a[1, 11] = value;
                             txCb.Text = value.ToString();
                             break;
                         case 3:
-                            value = (float)(Math.Asin((double)((a[0, 8] * Math.Sin((double)(a[4, 8] * pi / angle))) / a[1, 8])) * angle / pi);
+                            value = (float)(Math.Asin((double)((a[0, 8] * Math.Sin((double)(a[4, 8] * pi / totalTri))) / a[1, 8])) * totalTri / pi);
                             a[3, 0] = a[3, 2] = a[3, 5] = a[3, 8] = value;
                             txA.Text = value.ToString();
                             break;
                         case 4:
-                            value = (float)(Math.Asin((double)((a[1, 8] * Math.Sin((double)(a[3, 8] * pi / angle))) / a[0, 8])) * angle / pi);
+                            value = (float)(Math.Asin((double)((a[1, 8] * Math.Sin((double)(a[3, 8] * pi / totalTri))) / a[0, 8])) * totalTri / pi);
                             a[4, 0] = a[4, 3] = a[4, 6] = a[4, 8] = a[4, 9] = value;
                             txB.Text = value.ToString();
                             break;
@@ -370,22 +368,22 @@ namespace triangle
                     switch (notKnow)
                     {
                         case 2:
-                            value = (float)(a[1, 9] * Math.Sin((double)(a[5, 9] * pi / angle)) / Math.Sin((double)(a[4, 9] * pi / angle)));
+                            value = (float)(a[1, 9] * Math.Sin((double)(a[5, 9] * pi / totalTri)) / Math.Sin((double)(a[4, 9] * pi / totalTri)));
                             a[2, 1] = a[2, 2] = a[2, 3] = a[2, 5] = a[2, 6] = a[2, 7] = a[2, 9] = a[2, 10] = value;
                             txCc.Text = value.ToString();
                             break;
                         case 1:
-                            value = (float)((a[2, 9] * Math.Sin((double)(a[4, 9] * pi / angle))) / Math.Sin((double)(a[5, 9] * pi / angle)));
+                            value = (float)((a[2, 9] * Math.Sin((double)(a[4, 9] * pi / totalTri))) / Math.Sin((double)(a[5, 9] * pi / totalTri)));
                             a[1, 1] = a[1, 2] = a[1, 4] = a[1, 5] = a[1, 6] = a[1, 7] = a[1, 8] = a[1, 9] = a[1, 10] = a[1, 11] = value;
                             txCb.Text = value.ToString();
                             break;
                         case 5:
-                            value = (float)(Math.Asin((double)((a[2, 9] * Math.Sin((double)(a[4, 9] * pi / angle))) / a[1, 9])) * angle / pi);
+                            value = (float)(Math.Asin((double)((a[2, 9] * Math.Sin((double)(a[4, 9] * pi / totalTri))) / a[1, 9])) * totalTri / pi);
                             a[5, 0] = a[5, 4] = a[5, 7] = a[5, 9] = a[5, 11] = value;
                             txC.Text = value.ToString();
                             break;
                         case 4:
-                            value = (float)(Math.Asin((double)((a[1, 9] * Math.Sin((double)(a[5, 9] * pi / angle))) / a[2, 9])) * angle / pi);
+                            value = (float)(Math.Asin((double)((a[1, 9] * Math.Sin((double)(a[5, 9] * pi / totalTri))) / a[2, 9])) * totalTri / pi);
                             a[4, 0] = a[4, 3] = a[4, 6] = a[4, 8] = a[4, 9] = value;
                             txB.Text = value.ToString();
                             break;
@@ -425,17 +423,17 @@ namespace triangle
                     switch (notKnow)
                     {
                         case 1:
-                            value = (float)(a[6, 11] / Math.Sin((double)(a[5, 11] * pi / angle)));
+                            value = (float)(a[6, 11] / Math.Sin((double)(a[5, 11] * pi / totalTri)));
                             a[1, 1] = a[1, 2] = a[1, 4] = a[1, 5] = a[1, 6] = a[1, 7] = a[1, 8] = a[1, 9] = a[1, 10] = a[1, 11] = value;
                             txCb.Text = value.ToString();
                             break;
                         case 5:
-                            value = (float)(Math.Asin((double)(a[6, 11] / a[1, 11])) * angle / pi);
+                            value = (float)(Math.Asin((double)(a[6, 11] / a[1, 11])) * totalTri / pi);
                             a[5, 0] = a[5, 4] = a[5, 7] = a[5, 9] = a[5, 11] = value;
                             txC.Text = value.ToString();
                             break;
                         case 6:
-                            value = (float)(a[1, 11] * Math.Sin((double)(a[5, 11] * pi / angle)));
+                            value = (float)(a[1, 11] * Math.Sin((double)(a[5, 11] * pi / totalTri)));
                             a[6, 11] = value;
                             txha.Text = value.ToString();
                             break;
@@ -559,6 +557,8 @@ namespace triangle
 
         #endregion
 
+        #region button event
+
         private void btStart_Click(object sender, EventArgs e)
         {
             if (cbValue.SelectedItem == cbValue.Items[0])
@@ -584,5 +584,7 @@ namespace triangle
         {
             Close();
         }
+
+        #endregion
     }
 }
