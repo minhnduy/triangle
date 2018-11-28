@@ -15,7 +15,6 @@ namespace triangle
 
         #region khai báo 
 
-        // Khai báo biến.
         private float[,] a = new float[10, 12];  // khai báo mảng chứa 10 thuộc tính: 3 góc, 3 cạnh, diện tích, nửa chu vi, bán kính đường tròn ngoại tiếp, chiều cao và 12 công thức tính của tam giác trong trường hợp bài toán này.
         private const double pi = 3.1415926535897931;   // Khai bao pi
         private const float totalTri = 180f;               // Tong 3 goc trong tam giac.
