@@ -562,7 +562,7 @@ namespace triangle
         {
             if (cbValue.SelectedItem == cbValue.Items[0])
             {
-                MessageBox.Show("Bạn Chưa chọn Giá trị cần tính. \n Vui lòng chọn một giá trị cần tính rồi mới nhấn Bắt Đầu tính!", "Cảnh báo từ chương trình!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Bạn Chưa chọn Giá trị cần tính. \n Vui lòng chọn một giá trị cần tính rồi mới nhấn Start!", "Warrning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             else
