@@ -44,7 +44,7 @@ namespace triangle
             a[2, 1] = a[2, 2] = a[2, 3] = a[2, 5] = a[2, 6] = a[2, 7] = a[2, 9] = a[2, 10] = set;// cạnh c
             a[3, 0] = a[3, 2] = a[3, 5] = a[3, 8] = set;// góc Alpha
             a[4, 0] = a[4, 3] = a[4, 6] = a[4, 8] = a[4, 9] = set;// góc Beta
-            a[5, 0] = a[5, 4] = a[5, 7] = a[5, 9] = a[5, 11] = set;// góc Deta
+            a[5, 0] = a[5, 4] = a[5, 7] = a[5, 9] = a[5, 11] = set;// góc Gamma
             a[6, 11] = set;// chiều cao ha
             a[7, 2] = a[7, 3] = a[7, 4] = a[7, 10] = set;// diên tích S
             a[8, 1] = set;// nửa chu vi p
@@ -66,7 +66,7 @@ namespace triangle
                     if (a[4, 0] == -1) break;// góc beta
                     return true;
                 case 3:
-                    if (a[5, 0] == -1) break;// góc Deta
+                    if (a[5, 0] == -1) break;// góc Gamma
                     return true;
                 case 4:
                     if (a[0, 1] == -1) break;// Cạnh a

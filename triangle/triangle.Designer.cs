@@ -79,11 +79,11 @@
             // 
             this.lbC.AutoSize = true;
             this.lbC.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbC.Location = new System.Drawing.Point(423, 17);
+            this.lbC.Location = new System.Drawing.Point(403, 17);
             this.lbC.Name = "lbC";
-            this.lbC.Size = new System.Drawing.Size(76, 17);
+            this.lbC.Size = new System.Drawing.Size(96, 17);
             this.lbC.TabIndex = 0;
-            this.lbC.Text = "Góc Deta";
+            this.lbC.Text = "Góc Gamma";
             // 
             // lbCa
             // 
@@ -253,7 +253,7 @@
             "Giá trị cần tính.",
             "Góc Alpha.",
             "Góc Beta.",
-            "Góc Deta.",
+            "Góc Gamma.",
             "Cạnh a.",
             "Cạnh b.",
             "Cạnh c.",
